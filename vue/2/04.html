@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-resource</title>
+	<script src="../vue.js"></script>
+	<script src="../vue-resource.js"></script>
+	<!-- vue-resource依赖于vue,所以加载顺序要注意 -->
+	<!-- 除了用vue-resource之外 ，还可以使用‘axios’的第三方包实现数据的请求 -->
+	<!-- vue.js向windows对象挂载了Vue;
+	vue-resource向Vue挂载了this.$http -->
+</head>
+<body>
+	<div id = "app">
+		<input type="button" value="get" @click = "getInfo">
+		<input type="button" value="post" @click = "postInfo">
+		<input type="button" value="jsonp" @click = "jsonpInfo">
+	</div>
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+
+		},
+		methods:{
+			getInfo(){//发起get请求
+				this.$http.get('http://localhost/tom/get.php').then(function(result){console.log(result.body)})
+			},
+			postInfo(){
+				//手动发起post请求，默认没有表单格式，有的服务器处理不了
+				//通过post方法的第三个参数设置提交内容为简单表单数据格式
+				//一般发送post请求，默认表单格式为application /x-www.-form-urlencoded
+
+				this.$http.post('http://localhost/tom/post.php',{},{emulateJSON:true}).then(result=>{
+					console.log(result.body)
+				})
+			},
+			jsonpInfo(){
+				this.$http.jsonp('http://localhost/tom/vue-resource-jsonp.php').then(result=>{
+					console.log(result)
+				})
+
+			}
+		}
+	})
+</script>

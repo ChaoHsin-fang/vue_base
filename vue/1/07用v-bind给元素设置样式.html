@@ -1,0 +1,155 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>通过属性绑定为元素设置样式</title>
+	<script src="../vue.js"></script>
+	<style>
+		.red{
+			color:red;
+		}
+		.thin{
+			font-weight: 200;
+		}
+		.italic{
+			font-style:italic;
+		}
+		.active{
+			letter-spacing: 0.5em;
+			/* 每个字符的间距（对中文字符起作用）
+			word-spacing（对英文字符有作用） */
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		第一种方法,直接传递一个数组,这里的class需要用v-bind 做数据绑定 里面记得要加上引号
+		<h1 :class = "['thin','italic']">一个标签</h1> 
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+
+		},
+		methods:{}
+	})
+</script>
+</html>		 -->
+
+
+<!--  <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<title>通过属性绑定为元素设置样式</title>
+ 	<script src="../vue.js"></script>
+ 	<style>
+ 		.red{
+ 			color:red;
+ 		}
+ 		.thin{
+ 			font-weight: 200;
+ 		}
+ 		.italic{
+ 			font-style:italic;
+ 		}
+ 		.active{
+ 			letter-spacing: 0.5em;
+ 			/* 每个字符的间距（对中文字符起作用）
+ 			word-spacing（对英文字符有作用） */
+ 		}
+ 	</style>
+ </head>
+ <body>
+ 	<div id="app">
+ 		第二种方法
+ 			在数组中使用三元表达式
+ 		 <h1 :class = "['thin','red', flag?'active':'']">标签</h1> 
+ 
+ 
+ 		第三种方法
+ 		数组中用对象来代替三元表达式,来提高可读性 ,对象中只要属性没有包含-,就可以把属性外面的引号省略,如果是font-weight,就不能省略,一般就不要省略了！
+ 		 <h1 :class = "['thin','red', {'active':flag}]">标签!</h1>
+ 
+ 	</div>
+ </body>
+ </html>
+ <script>
+ 	var vm = new Vue({
+ 		el:"#app",
+ 		data:{
+ 			flag: true
+ 		},
+ 		methods:{
+ 
+ 		}
+ 	})
+ </script> --> 
+
+
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>通过属性绑定为元素设置样式</title>
+	<script src="../vue.js"></script>
+	<style>
+		.red{
+			color:red;
+		}
+		.thin{
+			font-weight: 200;
+		}
+		.italic{
+			font-style:italic;
+		}
+		.active{
+			letter-spacing: 0.5em;
+			/* 每个字符的间距（对中文字符起作用）
+			word-spacing（对英文字符有作用） */
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		
+		 <h1 :class = "classObj">..标签</h1>
+
+	</div>
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			flag: true,
+			/*在class中使用v-bind绑定对象,对象的属性可带也可不带引号，即thin可带也可不带引号*/
+			classObj:{"thin":true,"red":true,"italic":false,"active":true}
+		},
+		methods:{
+
+		}
+	})
+</script>  
+
+<!-- 第一种方法
+			直接传递一个数组,这里的class需要用v-bind 做数据绑定 里面记得要加上引号
+		<h1 :class = "['thin','italic']">一个标签</h1> 
+
+第二种方法
+ 			在数组中使用三元表达式
+ 		 <h1 :class = "['thin','red', flag?'active':'']">标签</h1> 
+
+第三种方法
+ 		数组中用对象来代替三元表达式,来提高可读性,
+ 		另外，对象中只要属性没有包含-,就可以把属性外面的引号省略,如果是font-weight,就不能省略,一般就不要省略了！
+ 		 <h1 :class = "['thin','red', {'active':flag}]">标签!</h1>
+
+第四种方法
+		直接传递一个对象，在data中需要定义一下这个对象
+		<h1 :class = "classObj">..标签</h1> -->
+

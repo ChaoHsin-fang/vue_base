@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<!-- 这是MVVM中的v -->
+	<div id = "aaa">
+		<p>{{msg}}</p>
+	</div>
+</body>
+</html>
+<script>
+	//创建一个vue实例
+	/*vm是MVVM中的VM*/
+	var vm = new Vue({
+		el:'#aaa',	//表示vue将操作#aaa区域
+		/*data是MVVM中的M*/
+		data:{		//data属性,存放el中要用到的数据	
+			msg:'你好'
+		}
+	})
+
+
+	//		{{}}  插值表达式
+</script>
+

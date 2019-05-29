@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>通过内联样式绑定为元素添加样式</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1 :style = "styleObj1">hhhhh</h1>
+
+		<!-- 用数组的方式添加多个data中多个样式对象 -->
+		<h1 :style = "[styleObj1, styleObj2]">hhhhh</h1>
+	</div>
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			/*对象中,如果属性中包含有-,则该属性的引号不能省略*/
+			styleObj1:{color:"red","font-weight":200},
+			styleObj2:{'font-style':'italic'}
+		}
+	})
+</script>

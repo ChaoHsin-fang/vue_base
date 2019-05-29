@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>共有组件和私有组件</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id = "app">
+		
+		<mycom3></mycom3>
+	</div>
+
+	<!-- 组件是全局定义的，可以在不同个vue实例中运用 -->
+	<div id="app2">
+		<mycom3></mycom3>
+		<login></login>
+	</div>
+
+	<!-- 3.2 -->
+	<!-- 在被控制的#app外，使用template元素，定义组件的HTML模板结构 -->
+	<template id="tmp1">
+		<div>
+			<h3>这是第三种方法，通过在#app外定义一个template标签来实现的</h3>
+		</div>
+	</template>
+
+
+	<template id = "templ2">
+		<div>
+			<h3>定义一个私有组件</h3>
+		</div>
+	</template>
+</body>
+</html>
+<script>
+	
+
+	//第三种方法：
+	//3.1
+	Vue.component("mycom3",{
+		template:"#tmp1"
+	})
+
+
+	var vm = new Vue({
+		el:"#app",
+		data:{
+
+		},
+		methods:{
+
+		}
+	})
+
+		var vm = new Vue({
+		el:"#app2",
+		data:{},
+		methods:{},
+		filters:{},
+		directives:{},
+		components:{
+			//定义实例内的私有组件
+			login:{
+				template:'#templ2'
+			}
+		},
+
+		beforeCreate(){},
+		created(){},
+		beforeMount(){},
+		Mounted(){},
+		beforeUpdate(){},
+		Update(){},
+		beforeDestory(){},
+		Destory(){}
+	})
+</script>

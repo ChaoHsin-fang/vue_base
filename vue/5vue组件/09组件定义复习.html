@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id = "app">
+		<!-- 1.2调用这个全局组件 -->
+		<!-- <mylogin></mylogin> -->
+		<login></login>	
+	</div>
+</body>
+</html>
+<script>
+
+	//1.1 定义一个全局的组件
+//	var login = {
+//		template:"<h1>abcd</h1>"
+//	}
+//
+//	Vue.component('mylogin',login);
+
+	/*2.2*/
+	var login = {
+		template:"<h1>abcd</h1>"
+	}
+
+	var vm = new Vue({
+		el:"#app",
+		data:{
+
+		},
+		methods:{
+
+		},
+		//2.1私有组件
+		components:{
+			//‘组件名称’：组件模板对象
+			/*"mylogin":login,*/
+			login
+			
+			/*login*/
+			/*简写方式：表示login：login，此时引入时需要用login标签去引入*/
+
+		}
+	})
+</script>

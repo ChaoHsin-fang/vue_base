@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id = "app">
+    <input type="button" value = "change the msg" @click = "msg = 'NO'">
+    <p id = "a">{{msg}}</p>
+  </div>
+</body>
+</html>
+<script>
+  var vm = new Vue({
+    el:"#app",
+    data:{
+      msg:"yes"
+    },
+    methods:{
+      show(){
+        console.log("执行了show方法")
+      }
+    },
+    //生命周期函数创建阶段:
+    beforeCreate(){
+      //它是一个生命周期函数,在实例完全被创建出来之前,会执行它,然后再初始化data,和methods中的数据
+    },
+    created(){
+      //调用created函数时,data和methods都已经初始化好了
+    },
+    beforeMount(){//表示模板已经在内存中编译完成,但是未把模板渲染到页面中
+      /*console.log(document.getElementById('a').innerText)*/
+       /* 在beforeMount执行时,页面中的元素,还没有真正替换过来,只是之前写的一些模板字符串*/
+    },
+    mounted(){//函数名开头小写!!
+      //表示内存中的模板,已经真实挂载到了页面中,用户能够看到渲染好的页面了
+      //如果需要操作页面中的某个节点,最早只能在mounted页面当中
+      /*console.log(document.getElementById('a').innerText)*/
+      //mounted是实例创建期间最后一个生命函数,当执行玩mounted表示实例已经创建完成了,如果没有其它操作,这个实例便成功储存在内存中.
+      //执行完mounted则表示组件已经完成创建阶段,准备进入运行阶段
+    },
+    //运行阶段:
+    //当data数据发生改变才会出发运行阶段的生命周期函数(可触发0次或多次,只要数据发生改变就能触发)
+    beforeUpdate(){
+      //此时我们的界面还没被更新,但是内存中的数据已经更新完成了
+      /*console.log('界面中的内容:' + document.getElementById('a').innerText);
+      console.log('data中的msg数据是:' + this.msg);*/
+
+    },
+    //根据内存中最新的数据重新渲染一份虚拟DOM树映射到页面中去,这个过程也就完成了数据从内存到页面的更新:data(Model层) ->view(视图层)
+    updated(){
+      console.log('界面中的内容:' + document.getElementById('a').innerText);
+      console.log('data中的msg数据是:' + this.msg);
+
+      /*updated执行时,内存与页面中的内容已经同步了*/
+    },
+    /*销毁阶段:*/
+    beforeDestory:{
+      /*从运行阶段进入到销毁阶段,此时实例中所有的data和motheds还是可用状态,此时还未真正销毁*/
+    },
+    destoryed:{
+      /*执行到destoryed时,组件已经完全销毁了,此时组件中所有的data,methods,过滤器,指令等都不可用了*/
+    }
+
+  })
+</script>

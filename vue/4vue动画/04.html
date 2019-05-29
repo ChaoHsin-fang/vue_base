@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>钩子函数实现小球动画</title>
+	<script src="../vue.js"></script>
+	<style>
+		.ball{
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id = "app">
+		<input type="button" value="in" @click="flag=!flag">
+		<transition
+		@before-enter = "beforeEnter"
+		@enter = "enter"
+		@after-enter = "afterEnter">
+			<div class="ball" v-show = "flag"></div>
+		</transition>
+		
+	</div>
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			flag:false
+		},
+		methods:{
+			
+			/*动画钩子函数的第一个参数el表示要执行动画的那个DOM元素，是个原生的JS DOM对象*/
+			beforeEnter(el){
+				el.style.transform ="translate(0,0)"
+			},
+			enter(el,done){
+				//这句话没有实际作用，但是不写就没有动画效果，可认为是，加了el.offsetWidth会强制动画刷新；offsetWidth,offsetHight,offsetTop,offsetLeft都可以！
+				el.offsetWidth
+				el.style.transform ="translate(150px,450px)"
+				el.style.transition = "all 1s ease"
+
+				//done指的是对afterEnter函数的立即引用
+				done();
+
+			},
+			afterEnter(el){
+				this.flag = !this.flag;
+			}
+			/*当执行完afterEnter函数后，小球就在结束位置隐藏，然而当再次点击按钮，会再次执行动画，此时会重新执行beforeEnter，enter，afterEnter函数，所以，当再次点击时，小球会瞬间移动到开始位置*/
+		}
+	})
+</script>

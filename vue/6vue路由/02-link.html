@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../vue.js"></script>
+	<script src="../vue-router.js"></script>
+</head>
+<body>
+	<div id = "app">
+
+		<!-- router-link默认生成a标签，也可通过tag属性改变生成的标签 -->
+		<router-link to = "/login" tag ="span">login</router-link>
+		<router-link to = "/register">register</router-link>
+		
+		<router-view></router-view>	
+	</div>
+</body>
+</html>
+<script>
+
+	var login = {
+		template:'<h1>登录组件</h1>'
+	};
+	var register = {
+		template:'<h1>注册组件</h1>'
+	}
+
+
+
+	var routerObj = new VueRouter({
+	
+		routes:[	
+		//设置在访问根目录下也能直接强制跳到login组件
+		{path:'/',redirect:'/login'},
+		 
+		{path:'/login',component:login},
+		{path:'/register',component:register}
+
+		 ]
+	})
+
+
+	var vm = new Vue({
+		el:"#app",
+		data:{
+
+		},
+		methods:{
+
+		},
+		router:routerObj 
+	})
+</script>

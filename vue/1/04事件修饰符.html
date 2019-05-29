@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件修饰符</title>
+	<style>
+		.outer{
+			background-color: #f00;
+			padding:20px;
+		}
+		.inner{
+			height: 150px;
+			background-color:lightblue;
+		}
+	</style>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- stop 阻止冒泡 -->	 
+		<!-- <div class="inner" @click = "divClick">
+			<input type="button" value="阻止冒泡" @click.stop = "btnClick">	
+		</div> -->
+	
+		<!-- prevent	阻止默认行为 -->
+		<!-- <a href="http://www.baidu.com" @click.prevent = "linkClick">baidu</a> -->
+		
+		<!-- capture	捕获事件 -->
+		<!--  <div class="inner" @click.capture = "divClick">
+					<input type="button" value="捕获事件" @click = "btnClick">	
+				</div>  -->
+
+		<!-- self	只点击自己才会触发事件 -->
+		<!-- <div class="inner" @click.self = "divClick">
+		 			<input type="button" value="点击按钮不会触发inner的事件，点击盒子本身才会触发" @click = "btnClick">	
+		 	 </div> -->
+		
+		<!-- .once  只触发一次 -->
+		<!-- <a href="http://www.baidu.com" @click.prevent.once = "linkClick">baidu</a> -->
+		
+		<!-- .stop .self  区别 -->
+		<!-- <div class="outer" @click = "div1Click">
+			<div class="inner" @click.self = "divClick">
+				<input type="button" value="阻止冒泡" @click = "btnClick">	
+			</div>
+		</div> -->
+		<!-- .self只阻止inner本身的冒泡行为，不会阻止outer的冒泡行为； -->
+		
+	</div>
+	 <script>
+		var vm = new Vue({
+			el:"#app",
+			data:{
+	
+			},
+			methods:{
+				divClick(){
+					alert("点击了inner盒子")
+				},
+				div1Click(){
+					alert("点击了outer盒子")
+				},
+				btnClick(){
+					alert("点击了btn按钮")
+				},
+				linkClick(){
+					console.log("点击了链接")
+				}
+			}
+		})
+	</script>
+</body>
+</html>

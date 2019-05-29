@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id = "app">
+
+		<!-- <input type="button" value = "toggle" @click = "toggle"> -->
+		<!-- 因为函数只有一行代码,可以直接把函数写在input标签中,如下: -->
+		<input type="button" value = "toggle" @click = "flag = !flag">
+
+		<!-- v-if 每次切换都会重新创建或者删除元素
+		v-show 每次切换是改变该元素display的样式 -->
+		<h3 v-if = "flag">v-if控制的元素</h3>
+		<h3 v-show = "flag">v-show控制的元素</h3>
+		<!-- v-if 有较高的切换性能消耗
+		v-show 有较高的初始渲染消耗 -->
+
+		<!-- 如果元素频繁切换,用v-show
+		如果元素大概率处于隐藏状态,用v-if -->
+	</div>
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			flag:true
+		},
+		methods:{
+			/*toggle(){
+				this.flag = !this.flag
+			}*/
+		}
+	})
+</script> 

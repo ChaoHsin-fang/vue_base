@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../vue.js"></script>
+</head>
+<style>
+	 [v-cloak]{
+		display: none;
+	} 
+</style>
+<body>
+	<div id = "aaa">
+		<!-- v-cloak用于解决差值表达式闪烁问题 -->
+		<!-- 差值表达式前后可以放置其他符号 -->
+		<p v-cloak >++++{{msg}}-----</p>
+		<p v-text = "msg">1231131</p>
+		<!-- v-text默认没有闪烁问题 -->
+		<!-- v-text会把元素中所有的内容覆盖掉 -->
+
+
+
+		<!-- 插值表达式和v-text不会将标签内容进行转义
+	v-html可以将标签内容进行转义 
+	v-html也会将标签内所有内容覆盖掉-->
+	<div>{{msg2}}</div>
+	<div v-text = "msg2"></div>
+	<div v-html = "msg2"></div>
+	
+	<!-- 用v-bind将title与data中的mytitle绑定 -->
+		<!-- v-bind中mytitle被认为是一个变量,title中可以添加合法的js表达式
+		 -->
+	<input type="button" value = "按钮" v-bind:title = "mytitle +'abc'">
+	<!-- v-bind中可以写合法的js表达式 -->
+	<!-- v-bind:  简写为  : -->
+	<!-- v-on:  简写为  @ -->
+	<input type="button" value = "按钮"  :title = "mytitle +'abc'" @click = "show">
+	<!-- v:bind 是用于绑定属性的指令，缩写为冒号
+	v:on   是用于绑定事件的指令，缩写为@后不用加冒号 -->
+	
+	</div>
+
+	
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#aaa",
+		data:{
+			msg:"hello",
+			msg2:"<h1>hhhhhh</h1>",
+			mytitle:"自定义title"
+		},
+		//methods跟data一样也是个对象
+		methods:{	/*methods中定义了当前vue中所有可用的方法*/
+			show:function(){
+				alert("Hello")
+			}
+
+		}
+	})
+</script>

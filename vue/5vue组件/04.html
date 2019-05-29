@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id = "app">
+		<counter></counter>
+		<hr>
+		<counter></counter>
+		<hr>
+		<counter></counter>
+		<hr>
+	</div>
+	<template id = "temp1">
+		<div>
+			<input type="button" value="+1" @click="increment">
+			<h3>{{count}}</h3>
+		</div>
+	</template>
+</body>
+</html>
+<script>
+	//定义一个counter组件，负责让data中的值加一
+
+
+	//如果定义一个外部对象，然后data数据返回的 是这个外部对象（如下），则当运用多个组件时，这时多个组件都指向这同一个外部对象，当其中一个组件改变对象的值时，其他组件中的值也相应发生改变
+//	var dataObj ={count:0 }
+//	Vue.component("counter",{
+//		template:"#temp1",
+//		data:function(){
+//			return dataObj;
+//		},
+//		methods:{
+//			increment(){
+//				this.count++
+//			}
+//		}
+//	})
+
+
+//当组件内部返回一个对象时，就可以实现多个对象独立
+	Vue.component("counter",{
+		template:"#temp1",
+		data:function(){
+			return {count:0};
+		},
+		methods:{
+			increment(){
+				this.count++
+			}
+		}
+	})
+
+
+
+	var vm = new Vue({
+		el:"#app",
+		data:{
+
+		},
+		methods:{
+
+		}
+	})
+</script>

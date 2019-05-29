@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 1.遍历普通数组 -->
+		<p v-for="(item,i) in list">索引:{{i}} === 值：{{item}}</p>
+		<!-- item对应数组中的每一项 -->
+
+
+		<!-- 2.遍历数组中的各个对象 -->
+		<p v-for ="(val,i) in list2">Id:{{val.id}}===名字:{{val.name}}===索引:{{i}}</p>
+
+		<!-- 3.遍历一个对象中的各个属性 -->
+		<p v-for = "(value,key,i) in user"> 值为:{{value}}===键为:{{key}}===索引号为:{{i}}</p>
+
+
+		<!-- 4.迭代数字,从1开始 -->
+		<p v-for = "count in 10">这是第{{count}}次循环</p>
+	</div>
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			list:[1,2,3,4,5,6],
+			list2:[
+				{ id:1,name:'aaa'},
+				{ id:2,name:'bbb'},
+				{ id:3,name:'ccc'},
+				{ id:4,name:'ddd'}
+			],
+			user:{
+				id:1,
+				name:"Tom",
+				age:10
+			}
+		}
+	})
+</script>

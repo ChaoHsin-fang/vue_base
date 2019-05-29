@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id = "app">
+		<!-- 点击a会默认刷新页面，所以要阻止页面的默认行为 -->
+
+		<!-- 通过true和false来控制组件只能实现两个组件间的切换，无法实现多个组件切换 -->
+		
+		<a href="" @click.prevent = "flag = true">login</a>
+		<a href=""  @click.prevent = "flag = false">register</a>
+
+		<login  v-if = "flag" ></login>
+		<register v-else = "flag"></register>
+	</div>
+</body>
+</html>
+<script>
+	Vue.component("login",{
+		template:'<h3>login_component</h3>'
+	})
+
+	Vue.component("register",{
+		template:'<h3>register_component</h3>'
+	})
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			flag:true
+		},
+		methods:{
+
+		}
+	})
+</script>

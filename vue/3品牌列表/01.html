@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>接口不可用，这个案例放弃了！！</title>
+	<script src="../vue.js"></script>
+	<script src="../vue-resource.js"></script>
+	<link rel="stylesheet" href="../bootstrap.css">
+</head>
+<body>
+	<div id = "app">
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-heading">添加品牌</h3>
+		</div>
+		<div class="panel-body form-inline">
+			<label >
+				Name:
+				<input type="text" v-model='name' class="form-control ">
+			</label>
+			<input type="button" value="添加" @click="add" class="btn btn-primary">
+		</div>
+	</div>
+
+		<table class="table table-border table-hover table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Ctime</th>
+					<th>Operations</th>
+				</tr>
+			</thead>
+			<tbody v-for= "item in list" :key = "item.id">
+				<tr>
+					<td>{{item.id}}</td>
+					<td>{{item.name}}</td>
+					<td>{{item.ctime}}</td>
+					<td><a href="">删除</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			name:'',
+			list:[
+				{id:1,name:'a',ctime:new Date()},
+				{id:2,name:'b',ctime:new Date()}
+			]
+		},
+		created(){
+			this.getAllList()
+		},
+		methods:{
+			add(){
+
+			},
+			getAllList(){	//获取所有品牌列表
+				console.log(this.list)
+				console.log(typeof(this.list))
+				console.log(this.list instanceof Array)
+				this.$http.get('http://localhost/tom/vue_test.php').then(result => {
+					var results = result.body;
+					console.log(results)
+					console.log(typeof(results))
+					if(result.status ==200){
+						this.list = results.message
+					}else{
+
+						alert("获取数据失败！")
+					}
+				})
+			}
+		}
+	})
+</script>

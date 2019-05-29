@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>跑马灯效果</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id="aaa">
+		<input type="button" value = "切换" @click = "run">
+		<input type="button" value = "停" @click = "stop">
+		<p>{{msg}}</p>
+	</div>
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#aaa",
+		data:{
+			msg:"123456789",
+			interval:null	//在data中定义定时器
+		},
+		methods:{
+			run(){
+				/*只要setInterval执行过一次,就会开启定时器,另外还会产生某个值保存到interval中,所以只要判断interval是否为null,如果为null,说明还未开启过定时器*/
+				/*如果用户点击多次按钮,则interv的值一直会是非null的状态,便会直接执行return,从而忽视用户的多次点击,避免多开一些定时器*/
+				if(this.interval != null) return;
+				/*ES6新特性:
+				setInterval(()=>{},time)
+				这样的写法可以让外层的this在内内层中同样可以使用,从此不再需要:_this = this了.*/
+				this.interval = setInterval(() =>{
+					var start = this.msg.substring(0,1)		//这里可以不加符号,也可以加分号,但是就是不能加逗号
+					var end = this.msg.substring(1);
+					this.msg = end + start
+				},400)
+			},
+			stop(){
+				clearInterval(this.interval);
+				this.interval = null;
+			}
+		}
+	})
+</script>

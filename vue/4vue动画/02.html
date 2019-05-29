@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义transition name属性</title>
+	<script src="../vue.js"></script>
+	<style>
+		.v-enter,
+		.v-leave-to{
+			opacity:0;
+			transform:translateX(150px); 
+		}
+		.v-enter-active,
+		.v-leave-active{
+			transition:all 0.8s ease;
+
+		}
+
+
+
+
+		.my-enter,
+		.my-leave-to{
+			opacity:0;
+			transform:translateY(150px); 
+		}
+		.my-enter-active,
+		.my-leave-active{
+			transition:all 0.8s ease;
+
+		}
+	</style>
+</head>
+<body>
+	<div id = "app">
+		<input type="button" value="toggle" @click = "flag = !flag">
+		<transition>
+			<h3 v-if="flag">aaaaaa</h3>
+		</transition>
+
+		<hr>
+
+		<input type="button" value="toggle2" @click = "flag2 = !flag2">
+		<transition name = "my">
+			<h6 v-if="flag2">bbbbbbbbb</h6>
+		</transition>
+	</div>
+</body>
+
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			flag:false,
+			flag2:false
+		},
+		methods:{
+
+		}
+	})
+</script> 
+</html>

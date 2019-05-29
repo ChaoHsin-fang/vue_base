@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../vue.js"></script>
+	<style>
+		.v-enter,
+		.v-leave-to{
+			opacity: 0;
+			transform: translateX(150px);
+		}
+
+		.v-enter-active,
+		.v-leave-active{
+			transition: all 0.5s ease;
+
+		}
+	</style>
+</head>
+<body>
+	<div id = "app">
+		<a href="" @click.prevent= "comName= 'login'">login</a>
+		<a href="" @click.prevent = "comName = 'register'">register</a>
+		<!-- 通过mode属性设置组件切换模式 -->
+		<transition mode = "out-in">
+			<component :is ="comName"></component>	
+		</transition>
+	</div>
+</body>
+</html>
+<script>
+
+	//组件的名称为字符串
+	Vue.component("login",{
+		template:'<h3>login_component</h3>'
+	})
+
+	Vue.component("register",{
+		template:'<h3>register_component</h3>'
+	})
+
+
+
+
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			comName:'login'  
+		},
+		methods:{
+
+		}
+	})
+
+</script>

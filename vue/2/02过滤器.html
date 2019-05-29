@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>过滤器的基本使用</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id = "app">
+		<!-- 可以调用多个过滤器 -->
+		<p>{{msg | msgFormat('ccc','ddd') |test}}</p>
+	</div>
+</body>
+</html>
+<script>
+	/*定义一个Vue全局的过滤器msgFormat*/
+	Vue.filter('msgFormat',function(msg,arg,arg2){
+		/*replace 方法第一个参数除了可以为字符串外,也可以是正则表达式*/
+		return msg.replace(/aaa/g,arg + arg2)
+	})
+
+	Vue.filter('test',function(msg){
+		return msg + '+++++++'
+	})
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			msg:'1.aaa 2.aaa 3.aaa'
+		},
+		methods:{
+
+		}
+	})
+
+	
+</script>
+

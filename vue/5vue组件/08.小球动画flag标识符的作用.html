@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>钩子函数实现小球动画</title>
+	<script src="../vue.js"></script>
+	<style>
+		.ball{
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id = "app">
+		<input type="button" value="in" @click="flag=!flag">
+		<transition
+		@before-enter = "beforeEnter"
+		@enter = "enter"
+		@after-enter = "afterEnter">
+			<div class="ball" v-show = "flag"></div>
+		</transition>
+		
+	</div>
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			flag:false
+		},
+		methods:{
+
+			beforeEnter(el){
+				el.style.transform ="translate(0,0)"
+			},
+			enter(el,done){
+				
+				el.offsetWidth
+				el.style.transform ="translate(150px,450px)"
+				el.style.transition = "all 1s ease"
+
+
+				done();
+
+			},
+			afterEnter(el){
+				/*这句话，第一个功能：控制小球的显示与隐藏
+				第二个功能：直接跳过后半场动画，让flag标签直接变为false
+				当第二次点击按钮时，可以让小球直接回到flag = flase的状态可以满足前半场动画的条件*/
+				//this.flag = !this.flag;
+
+				el.style.opacity = 0.5;
+
+				/*自己的理解：
+				这个例子中，如果最后afterEnter中为el.style.opacity = 0.5;
+				小球flag：false（最开始隐藏）->ture(点击按钮后显示）->opacity=0.5（到达目标位置）
+				此时当再次点击按钮时，理想状态为小球flag是flase，重新执行上一行的行为；
+				然而，小球在结束时的状态为opacity= 0.5，这时，当第二次点击时，小球表现为等了一会再消失，这时小球是执行了后半场动画；
+				因为从opacity=0.5到flase，需要一个过程，这个过程就是后半场动画；
+				没有这个过程的话，小球就没办法回到一开始为flase的状态 了！*/
+				
+			}
+			
+		}
+	})
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../vue.js"></script>
+	<script src="../vue-router.js"></script>
+
+</head>
+<body>
+	<div id = "app">
+		<input type="text" v-model="firstname">+
+		<input type="text" v-model="middlename">+
+		<input type="text" v-model="lastname">=
+		<input type="text" v-model="fullname">
+	</div>
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			firstname:'',
+			lastname:'',
+			middlename:''
+		},
+		methods:{
+			
+		},
+		computed:{//【计算属性】 使用时直接将其当作属性来使用，不要加（）
+			//只要计算属性所依赖的值发生改变，便会立即重新计算这个属性的值
+			//计算属性的求值结果会被缓存起来，方便下次直接使用，如果计算属性所依赖的值没发生变化，便不会对计算属性进行求值
+			fullname:function(){
+				return this.firstname + '-' + this.middlename + '-' +this.lastname
+			}
+
+		}
+	})
+</script>
+
+<!-- computed 结果会被缓存，当依赖的响应式属性发生改变时才会重新计算，主要当作属性来使用；
+methods 表示一个具体的操作，主要是书写业务逻辑
+watch 键是需要观察的表达式，值是对应的回调函数，当特点的属性发生改变时进行具体的业务逻辑操作，可看作computed和methods结合体 -->

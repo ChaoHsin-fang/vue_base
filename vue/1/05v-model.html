@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model 双向数据绑定</title>
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id="box">
+		<!-- v-bind 实现单向数据绑定,从M到V -->
+		<input type="text" style="width:100%" v-bind:value="msg">	<!-- 错:v-bind:value="{{msg}}" -->
+
+		<!-- v-model可以实现数据的双向绑定
+		v-model只能用在表单元素中
+		input(radio,text,address,email) select checkbox textarea -->
+		<input type="text" style="width:100%" v-model="msg">
+	</div>
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#box",
+		data:{
+			msg:'abcdefg'		//字符串需要加上引号
+		}
+	})
+</script>

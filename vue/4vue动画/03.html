@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../vue.js"></script>
+	<script src="../vue-resource.js"></script>
+	<link rel="stylesheet" href="../animate.css">
+	
+</head>
+<body>
+	<div id = "app">
+		<input type="button" value="toggle" @click = "flag = !flag">
+		<!-- 使用：duration =  "毫秒值" 来统一设置入长场和出场时间的动画时长 -->
+
+		 <transition enter-active-class = "bounceIn" leave-active-class = "bounceOut":duration = "400">
+			<h3 v-if="flag" class = "ainmated">aaaaaa</h3>
+		</transition> 
+
+		<!-- 使用：duration"{ enter:200,leave:400}"来分别设置入场和出场时长 -->
+		<!-- <transition
+			enter-active-class = "bounceIn"
+			leave-active-class = "bounceOut":duration = "{enter:3000,leave:400}">
+				<h3 v-if="flag" class = "ainmated">aaaaaa</h3>
+			</transition> -->	
+	</div>
+</body>
+
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			flag:false
+		},
+		methods:{
+
+		}
+	})
+</script> 
+</html>

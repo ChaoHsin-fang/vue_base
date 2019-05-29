@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="../vue.js"></script>
+	<script src="../vue-router.js"></script>
+
+</head>
+<body>
+	<div id = "app">
+		<input type="text" v-model="firstname">+
+		<input type="text" v-model="lastname">=
+		<input type="text" v-model="fullname">
+	</div>
+</body>
+</html>
+<script>
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			firstname:'',
+			lastname:'',
+			fullname:''
+		},
+		methods:{
+			
+		},
+		watch:{//这个属性可以监视指定数据的变化，当数据变化时会触发这个watch中对应的function
+			//属性名中间如果没有短线（-），则属性名可加可不加引号，如果有短线，则必须加引号
+			firstname:function(newVal,oldVal){	//函数有两个参数（newVal,oldVal）
+				//console.log("firstname变化了")
+				//this.fullname = this.firstname + '-' + this.lastname;
+				this.fullname = newVal + '-' + this.lastname;
+			},
+			lastname:function(newVal,oldVal){
+				this.fullname = this.firstname + '-' + newVal;
+			}
+
+		}
+	})
+</script>
